@@ -58,6 +58,20 @@
 // });
 
 
+async function returnMovies() {
+  try {
+      const response = await fetch('https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=41ee980e4b5f05f6693fda00eb7c4fd4&page=1');
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      // Process data here
+  } catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+  }
+}
+
+returnMovies();
 
 
 const APILINK = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=41ee980e4b5f05f6693fda00eb7c4fd4&page=1';
@@ -81,6 +95,7 @@ function fetchWithRetry(url, retries = 3) {
     return res.json();
   });
 }
+
 
 returnMovies(APILINK);
 
